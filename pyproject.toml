@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "erkang"
+version = "0.1.0"
+description = "An 图灵星球 Agent 军团 member agent."
+authors = ["you <you@example.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mcp = "^1.2"
+fastapi = "^0.115"     # REST surface at /api (served alongside /mcp when deployed)
+uvicorn = "^0.30"      # ASGI server for HTTP/deploy mode
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8"
+ruff = "^0.5"
+bandit = "^1.7"
+
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+priority = "primary"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

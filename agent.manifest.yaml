@@ -1,0 +1,29 @@
+# THE ANCHOR — this file's name (agent.manifest.yaml) + location (repo root) are the one
+# hardcoded thing in the whole system. Every tool is guaranteed to find the manifest here.
+#
+# This is a RUNNABLE python-mcp starter. scaffolding with copier gives you a repo that passes
+# review out of the box on the placeholder stubs. Replace the /api + /mcp_server + tests code with
+# your own, and edit any values below that should differ for your agent.
+
+apiVersion: v1
+profile: python-mcp
+
+toolchain:
+  language: python
+  packageManager: poetry
+
+paths:
+  api: ./api
+  mcp: ./mcp_server          # runnable MCP server (stdio) wrapping your logic
+
+commands:                    # the review flow runs EXACTLY these
+  install: poetry install --no-root
+  test:    poetry run pytest -q
+  lint:    poetry run ruff check .
+  security: poetry run bandit -q -r api
+
+# Platform-membership intent (RFC 001 §10). true = on your first push to GitHub,
+# the platform opens a members.yaml PR for you (an admin merges — nothing is
+# automatic beyond that). Flip anytime; the next push acts on the new value.
+fleet:
+  register: true
