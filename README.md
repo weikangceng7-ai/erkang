@@ -113,6 +113,6 @@ membership **and** any platform hosting; an admin merges, and hosting tears
 down automatically on that merge. Your code is never touched. Deleting the
 repo additionally needs `gh auth refresh -h github.com -s delete_repo` once.
 
-## How review works
+  ## How review works
 Open a pull request → the review flow from [`policies`](https://github.com/turingplanet/policies) reads the manifest, installs, runs the tests, lints, scans for security issues, lets the AI reviewer advise — and the **gate** (the hard checks) decides pass/fail. See the [platform overview](https://github.com/turingplanet/agent-legion) for the full picture.
-
+  
