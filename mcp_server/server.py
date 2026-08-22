@@ -22,7 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from mcp.server.fastmcp import FastMCP
 
 import config
-from api.server import run, say_hi
+from api.server import run, say_hi, calculate
 
 # --- MCP surface (tools) -------------------------------------------------
 mcp = FastMCP(config.AGENT_NAME, host=config.HOST, port=config.PORT)
@@ -38,6 +38,12 @@ def tool_say_hi() -> str:
 def tool_run(payload: str = "ping") -> str:
     """Placeholder tool; delegates to your business logic in /api."""
     return run(payload)
+
+
+@mcp.tool()
+def tool_calculate(expression: str = "2 + 2") -> str:
+    """Evaluate a math expression (supports +, -, *, /, **)."""
+    return calculate(expression)
 
 
 # --- combined ASGI app: MCP at /mcp + REST at /api (HTTP/deploy mode) -----
