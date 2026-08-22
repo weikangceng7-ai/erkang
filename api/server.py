@@ -15,4 +15,6 @@ def say_hi() -> str:
 
 def run(payload: str = "ping") -> str:
     """Placeholder entrypoint — replace with your agent's real logic."""
+    if payload == "error":
+        raise RuntimeError("simulated error: something went wrong")
     return f"TODO: implement your agent. You sent: {payload}"
